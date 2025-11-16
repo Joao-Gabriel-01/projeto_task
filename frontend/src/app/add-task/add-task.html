@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Adicionar Nova Tarefa em {{ data.sectionName }}</h2>
+
+<mat-dialog-content>
+  <form class="task-form" #form="ngForm" (ngSubmit)="addTask()">
+    <mat-form-field appearance="fill">
+      <mat-label>Nome da Tarefa</mat-label>
+      <input matInput [(ngModel)]="task.title" name="title" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Descrição</mat-label>
+      <textarea matInput [(ngModel)]="task.description" name="description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Prazo</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="task.deadline" name="deadline" required>
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="addTask()" [disabled]="!form.valid">
+    Adicionar
+  </button>
+</mat-dialog-actions>

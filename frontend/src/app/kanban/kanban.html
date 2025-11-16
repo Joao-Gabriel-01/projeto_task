@@ -1,0 +1,33 @@
+<div class="page-container">
+  <h1>Quadro Kanban</h1>
+  
+  <div class="kanban-container" cdkDropListGroup> 
+    
+    <div class="kanban-column" *ngFor="let section of sections">
+      <h3>{{ section.name }}</h3>
+  
+      <div
+        class="kanban-column-content"
+        cdkDropList
+        [id]="section.name" [cdkDropListData]="section.tasks"
+        (cdkDropListDropped)="onDrop($event)">
+        
+        <div
+          class="task-card"
+          *ngFor="let task of section.tasks"
+          cdkDrag
+          (click)="openTaskDetail(task)"> <div class="task-title">{{ task.title }}</div>
+          <div class="task-deadline">
+            Prazo: {{ task.deadline | date: 'dd/MM/yyyy' }}
+          </div>
+        </div>
+
+        <div *cdkDragPlaceholder class="task-card-placeholder"></div>
+      </div>
+  
+      <button mat-raised-button color="primary" (click)="openAddTaskDialog(section.name)">
+        + Adicionar Tarefa
+      </button>
+    </div>
+  </div>
+</div>

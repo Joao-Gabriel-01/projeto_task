@@ -1,0 +1,87 @@
+.page-container {
+  padding: 24px;
+}
+
+.kanban-container {
+  display: flex;
+  flex-direction: row; /* Colunas lado a lado */
+  gap: 16px;           /* Espaçamento entre colunas */
+  overflow-x: auto;    /* Permite rolar se as colunas não couberem */
+}
+
+.kanban-column {
+  flex: 1; /* Faz as colunas dividirem o espaço */
+  min-width: 280px; /* Largura mínima de uma coluna */
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  background: #f4f4f4;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.kanban-column h3 {
+  text-align: center;
+  font-weight: 600;
+}
+
+.kanban-column-content {
+  min-height: 200px; /* Espaço para soltar, mesmo se vazio */
+  border: 1px dashed #ccc;
+  border-radius: 4px;
+  background: #fff;
+  flex-grow: 1; /* Ocupa o espaço restante na coluna */
+  padding: 8px;
+}
+
+.task-card {
+  padding: 12px;
+  margin-bottom: 8px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.05);
+  cursor: move;
+  transition: box-shadow 0.2s ease;
+}
+
+.task-card:hover {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.task-title {
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.task-deadline {
+  font-size: 0.85em;
+  color: #555;
+}
+
+/* Estilo do card enquanto está sendo arrastado */
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+/* Placeholder que fica no lugar de origem */
+.task-card-placeholder {
+  background: #f0f0f0;
+  border: 2px dashed #ccc;
+  margin-bottom: 8px;
+  min-height: 50px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* Animação suave ao soltar */
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.kanban-column-content.cdk-drop-list-dragging .task-card:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
